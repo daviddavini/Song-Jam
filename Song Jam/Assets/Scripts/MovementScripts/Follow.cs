@@ -5,7 +5,7 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
 	[SerializeField]
-	private Transform target;
+	private Transform target = null;
 
 	private Vector2 currentVelocity = Vector3.zero;
 
