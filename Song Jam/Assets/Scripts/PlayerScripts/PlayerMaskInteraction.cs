@@ -8,16 +8,16 @@ public class PlayerMaskInteraction : MonoBehaviour
     private GameObject bindPoint;
     private bool hasMask;
     private GameObject mask = null;
-    bool checkMask()
+    bool CheckMask()
     {
         return !hasMask && mask == null;
     }
-    void aquireMask(GameObject newMask)
+    void AquireMask(GameObject newMask)
     {
         mask = newMask;
         hasMask = true;
     }
-    void moveMask()
+    void MoveMask()
     {
         if(mask != null)
         {
@@ -34,17 +34,17 @@ public class PlayerMaskInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveMask();
+        MoveMask();
     }
     
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("collided!");
 
-        if(checkMask() && other.tag == "mask")
+        if(CheckMask() && other.tag == "mask")
         {
             Debug.Log("collided with mask");
-            aquireMask(other.gameObject);
+            AquireMask(other.gameObject);
         }
     }
 }
