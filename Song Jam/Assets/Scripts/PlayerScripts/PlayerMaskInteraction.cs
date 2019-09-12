@@ -56,7 +56,6 @@ public class PlayerMaskInteraction : MonoBehaviour
     void Update()
     {
         MoveMask();
-        DropMask();
     }
     
     void OnTriggerEnter2D(Collider2D other)
