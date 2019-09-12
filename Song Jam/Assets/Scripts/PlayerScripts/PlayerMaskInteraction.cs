@@ -8,6 +8,10 @@ public class PlayerMaskInteraction : MonoBehaviour
     private GameObject bindPoint;
     private bool hasMask;
     private GameObject mask = null;
+    bool checkMask()
+    {
+        return !hasMask && mask == null;
+    }
     void aquireMask(GameObject newMask)
     {
         mask = newMask;
@@ -35,8 +39,11 @@ public class PlayerMaskInteraction : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(!hasMask && mask == null)
+        Debug.Log("collided!");
+
+        if(checkMask() && other.tag == "mask")
         {
+            Debug.Log("collided with mask");
             aquireMask(other.gameObject);
         }
     }
