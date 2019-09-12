@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    new private Rigidbody2D rigidbody;
+
+    [SerializeField]
+    private float speed;
+
+    private void Awake()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MoveInDirection(Vector3 direction)
     {
-        
+        rigidbody.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 }
