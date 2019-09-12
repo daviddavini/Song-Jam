@@ -7,17 +7,37 @@ public class PlayerMaskInteraction : MonoBehaviour
     [SerializeField]
     private GameObject bindPoint;
     private bool hasMask;
+    private bool canAquire;
     private GameObject mask = null;
+    
     bool checkMask()
     {
         return !hasMask && mask == null;
     }
     void aquireMask(GameObject newMask)
     {
-        mask = newMask;
-        hasMask = true;
+        if(canAquire)
+        {
+            mask = newMask;
+            hasMask = true;
+        }
     }
-    void moveMask()
+    void DropMask()
+    {
+        if(mask != null)
+        {
+            // drop mask in random direction
+            Vector3 randomVector = new Vector3().RandomVector();
+       
+            Debug.Log(randomVector);
+            mask.GetComponent<Rigidbody2D>().AddForce(randomVector, ForceMode2D.Impulse);
+
+            mask = null;
+            hasMask = false;
+            
+        }
+    }
+    void MoveMask()
     {
         if(mask != null)
         {
@@ -28,13 +48,15 @@ public class PlayerMaskInteraction : MonoBehaviour
     void Start()
     {
         hasMask = false;
+        canAquire = true;
         mask = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveMask();
+        MoveMask();
+        DropMask();
     }
     
     void OnTriggerEnter2D(Collider2D other)
