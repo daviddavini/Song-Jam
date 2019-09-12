@@ -10,11 +10,11 @@ public class PlayerMaskInteraction : MonoBehaviour
     private bool canAquire;
     private GameObject mask = null;
     
-    bool checkMask()
+    bool CheckMask()
     {
         return !hasMask && mask == null;
     }
-    void aquireMask(GameObject newMask)
+    void AquireMask(GameObject newMask)
     {
         if(canAquire)
         {
@@ -63,10 +63,10 @@ public class PlayerMaskInteraction : MonoBehaviour
     {
         Debug.Log("collided!");
 
-        if(checkMask() && other.tag == "mask")
+        if(CheckMask() && other.tag == "mask")
         {
             Debug.Log("collided with mask");
-            aquireMask(other.gameObject);
+            AquireMask(other.gameObject);
         }
     }
 }
